@@ -53,7 +53,7 @@ public class EchoStreamEndpoint extends PlivoWebSocketEndpoint {
 
             // Echo the audio back to the caller
             try {
-                handler.sendMedia(audioBytes, "audio/x-l16", 16000);
+                handler.playAudio(audioBytes, "audio/x-l16", 16000);
             } catch (IOException e) {
                 log.error("Failed to send media", e);
             }

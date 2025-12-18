@@ -42,7 +42,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * handler.onMedia(event -> {
  *     byte[] audio = event.getRawMedia();
  *     // Process and echo back
- *     handler.sendMedia(audio);
+ *     handler.playAudio(audio);
  * });
  *
  * // Or use full listener
@@ -62,9 +62,9 @@ public class PlivoStreamingHandler {
     private static final Logger log = LoggerFactory.getLogger(PlivoStreamingHandler.class);
 
     /** Default audio content type for mulaw encoding */
-    public static final String DEFAULT_CONTENT_TYPE = "audio/x-mulaw";
+    public static final String DEFAULT_CONTENT_TYPE = "audio/x-l16";
     /** Default sample rate in Hz */
-    public static final int DEFAULT_SAMPLE_RATE = 8000;
+    public static final int DEFAULT_SAMPLE_RATE = 16000;
 
     private final ObjectMapper objectMapper;
     private final List<StreamEventListener> listeners = new CopyOnWriteArrayList<>();
@@ -294,13 +294,6 @@ public class PlivoStreamingHandler {
     // ==========================================================================
 
     private void dispatchEvent(StreamEvent event) {
-        // Temporary: log at INFO to debug event dispatch
-        if (!"media".equals(event.getEvent())) {
-            log.info("Dispatching event: type={}, class={}", event.getEvent(), event.getClass().getSimpleName());
-        } else {
-            log.info("Media event class: {}", event.getClass().getSimpleName());
-        }
-        
         if (event instanceof StartEvent) {
             handleStartEvent((StartEvent) event);
         } else if (event instanceof MediaEvent) {
@@ -434,8 +427,8 @@ public class PlivoStreamingHandler {
      * @param audioData raw audio bytes
      * @throws IOException if sending fails
      */
-    public void sendMedia(byte[] audioData) throws IOException {
-        sendMedia(audioData, null, null);
+    public void playAudio(byte[] audioData) throws IOException {
+        playAudio(audioData, null, null);
     }
 
     /**
@@ -446,7 +439,7 @@ public class PlivoStreamingHandler {
      * @param sampleRate  sample rate in Hz (e.g., 8000, 16000)
      * @throws IOException if sending fails
      */
-    public void sendMedia(byte[] audioData, String contentType, Integer sampleRate) throws IOException {
+    public void playAudio(byte[] audioData, String contentType, Integer sampleRate) throws IOException {
         if (session == null || !session.isOpen()) {
             throw new IOException("WebSocket session is not open");
         }

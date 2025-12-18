@@ -105,7 +105,7 @@ public class MyStreamEndpoint extends PlivoWebSocketEndpoint {
             
             // Echo audio back to caller
             try {
-                handler.sendMedia(audio, "audio/x-mulaw", 8000);
+                handler.playAudio(audio, "audio/x-mulaw", 8000);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -170,8 +170,8 @@ handler.addListener(new StreamEventListener() {
 
 | Method | Description |
 |--------|-------------|
-| `sendMedia(byte[] audio)` | Send audio with default format |
-| `sendMedia(byte[] audio, String contentType, Integer sampleRate)` | Send audio with custom format |
+| `playAudio(byte[] audio)` | Send audio with default format |
+| `playAudio(byte[] audio, String contentType, Integer sampleRate)` | Send audio with custom format |
 | `sendClearAudio()` | Clear audio buffer |
 | `sendCheckpoint(String name)` | Set checkpoint marker |
 
@@ -294,13 +294,13 @@ handler.onMedia(event -> {
 
 ```java
 // Default: mulaw 8kHz (matches incoming format)
-handler.sendMedia(audioBytes);
+handler.playAudio(audioBytes);
 
 // Explicit format
-handler.sendMedia(audioBytes, "audio/x-mulaw", 8000);
+handler.playAudio(audioBytes, "audio/x-mulaw", 8000);
 
 // Linear PCM 16-bit
-handler.sendMedia(pcmBytes, "audio/x-l16", 16000);
+handler.playAudio(pcmBytes, "audio/x-l16", 16000);
 ```
 
 ## Deployment

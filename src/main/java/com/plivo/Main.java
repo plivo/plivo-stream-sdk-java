@@ -41,7 +41,7 @@ public class Main {
         handler.onMedia((MediaEvent event) -> {
             byte[] audio = event.getRawMedia();
             System.out.println("Received " + audio.length + " bytes");
-            // Echo back: handler.sendMedia(audio);
+            // Echo back: handler.playAudio(audio);
         });
 
         handler.onDtmf(event -> {

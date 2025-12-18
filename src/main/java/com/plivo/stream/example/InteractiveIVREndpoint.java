@@ -181,7 +181,7 @@ public class InteractiveIVREndpoint extends PlivoWebSocketEndpoint {
         private void playAudio(String audioName) throws IOException {
             byte[] audio = loadAudio(audioName);
             if (audio != null) {
-                handler.sendMedia(audio);
+                handler.playAudio(audio);
             }
         }
 

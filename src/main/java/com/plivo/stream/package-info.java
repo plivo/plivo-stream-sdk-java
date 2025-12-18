@@ -22,7 +22,7 @@
  *         handler.onMedia(event -> {
  *             byte[] audio = event.getRawMedia();
  *             // Process and optionally echo back
- *             handler.sendMedia(audio);
+ *             handler.playAudio(audio);
  *         });
  *
  *         handler.onDtmf(event -> {
@@ -67,10 +67,10 @@
  * <h2>Sending Audio</h2>
  * <pre>{@code
  * // Send audio with default format (mulaw, 8kHz)
- * handler.sendMedia(audioBytes);
+ * handler.playAudio(audioBytes);
  *
  * // Send audio with custom format
- * handler.sendMedia(audioBytes, "audio/x-l16", 16000);
+ * handler.playAudio(audioBytes, "audio/x-l16", 16000);
  *
  * // Clear audio buffer
  * handler.sendClearAudio();

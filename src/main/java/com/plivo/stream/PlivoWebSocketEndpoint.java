@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  *             byte[] audio = event.getRawMedia();
  *             // Echo back
  *             try {
- *                 handler.sendMedia(audio);
+ *                 handler.playAudio(audio);
  *             } catch (IOException e) {
  *                 e.printStackTrace();
  *             }
