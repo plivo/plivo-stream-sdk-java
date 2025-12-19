@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.plivo</groupId>
@@ -11,6 +11,26 @@
 
     <name>Plivo Streaming SDK for Java</name>
     <description>A Java SDK for the Plivo Streaming API that enables bidirectional audio streaming with event-driven callbacks</description>
+    <licenses>
+        <license>
+            <name>The MIT License</name>
+            <url>https://github.com/plivo/plivo-stream-sdk-java/blob/main/LICENSE.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>The Plivo SDKs Team</name>
+            <email>sdks@plivo.com</email>
+            <organization>org.apache.maven.model.Organization@4f72e044</organization>
+            <organizationUrl>https://plivo.com</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:plivo/plivo-stream-sdk-java.git</connection>
+        <developerConnection>scm:git:git@github.com:plivo/plivo-stream-sdk-java.git</developerConnection>
+        <url>git@github.com:plivo/plivo-stream-sdk-java.git</url>
+    </scm>
     <url>https://github.com/plivo/plivo-stream-sdk-java</url>
 
     <properties>
@@ -28,7 +48,12 @@
             <artifactId>jakarta.websocket-api</artifactId>
             <version>2.1.1</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.plivo/plivo-java -->
+        <dependency>
+            <groupId>com.plivo</groupId>
+            <artifactId>plivo-java</artifactId>
+            <version>5.46.3</version>
+        </dependency>
         <!-- Jackson for JSON parsing -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -59,7 +84,7 @@
             <artifactId>tyrus-container-grizzly-server</artifactId>
             <version>2.1.4</version>
         </dependency>
-        
+
         <!-- SLF4J Simple for console logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -78,6 +103,30 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.6.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
