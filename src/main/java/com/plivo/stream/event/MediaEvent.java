@@ -67,6 +67,7 @@ public class MediaEvent extends StreamEvent {
                 "media=" + media +
                 ", sequenceNumber=" + getSequenceNumber() +
                 ", streamId='" + getStreamId() + '\'' +
+                ", extraHeaders='" + getExtraHeaders() + '\'' +
                 '}';
     }
 }

@@ -35,6 +35,9 @@ public class StreamEvent {
     @JsonProperty("streamId")
     private String streamId;
 
+    @JsonProperty("extra_headers")
+    private String extraHeaders;
+
     public StreamEvent() {
     }
 
@@ -62,12 +65,26 @@ public class StreamEvent {
         this.streamId = streamId;
     }
 
+    /**
+     * Custom headers passed via the Stream XML's {@code extraHeaders} attribute.
+     * Format: {@code key1=value1;key2=value2}. May be {@code null} when the
+     * Stream XML did not include the attribute.
+     */
+    public String getExtraHeaders() {
+        return extraHeaders;
+    }
+
+    public void setExtraHeaders(String extraHeaders) {
+        this.extraHeaders = extraHeaders;
+    }
+
     @Override
     public String toString() {
         return "StreamEvent{" +
                 "event='" + event + '\'' +
                 ", sequenceNumber=" + sequenceNumber +
                 ", streamId='" + streamId + '\'' +
+                ", extraHeaders='" + extraHeaders + '\'' +
                 '}';
     }
 }
