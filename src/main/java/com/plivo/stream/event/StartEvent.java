@@ -53,6 +53,7 @@ public class StartEvent extends StreamEvent {
                 "start=" + start +
                 ", sequenceNumber=" + getSequenceNumber() +
                 ", streamId='" + getStreamId() + '\'' +
+                ", extraHeaders='" + getExtraHeaders() + '\'' +
                 '}';
     }
 }

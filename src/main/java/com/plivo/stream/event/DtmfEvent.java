@@ -45,6 +45,7 @@ public class DtmfEvent extends StreamEvent {
                 "dtmf=" + dtmf +
                 ", sequenceNumber=" + getSequenceNumber() +
                 ", streamId='" + getStreamId() + '\'' +
+                ", extraHeaders='" + getExtraHeaders() + '\'' +
                 '}';
     }
 }
